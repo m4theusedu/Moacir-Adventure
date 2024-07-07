@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://bw2wlxhu20m0g"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+offset_right = 643.0
+offset_bottom = 324.0
+color = Color(0, 0, 0, 1)
+
+[node name="TextEdit" type="TextEdit" parent="."]
+offset_left = 4.0
+offset_top = 3.0
+offset_right = 636.0
+offset_bottom = 319.0

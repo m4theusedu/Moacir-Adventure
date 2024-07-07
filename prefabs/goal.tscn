@@ -1,0 +1,62 @@
+[gd_scene load_steps=7 format=3 uid="uid://b2lpj0uqlkxui"]
+
+[ext_resource type="Texture2D" uid="uid://lm841d11ute8" path="res://assets/goal.png" id="1_28uwq"]
+[ext_resource type="Script" path="res://scripts/goal.gd" id="1_xnn2x"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rc67e"]
+radius = 16.0
+
+[sub_resource type="Animation" id="Animation_l652f"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Goal:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_5qbmp"]
+resource_name = "float"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Goal:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -12)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_l4r2q"]
+_data = {
+"RESET": SubResource("Animation_l652f"),
+"float": SubResource("Animation_5qbmp")
+}
+
+[node name="goal" type="Area2D"]
+collision_layer = 2
+script = ExtResource("1_xnn2x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_rc67e")
+
+[node name="Goal" type="Sprite2D" parent="."]
+texture = ExtResource("1_28uwq")
+
+[node name="anim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_l4r2q")
+}
+autoplay = "float"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
